@@ -5,28 +5,24 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class AdminSeeder extends Seeder
 {
     public function run()   
     {
-        // Generate random data for the admin user
-        $name = 'Admin ' . Str::random(5); // Prefix "Admin" with a random string of 5 characters
-        $email = 'admin@example.com';
-        $role = 1;
-
-        // Seed the admin user
-        DB::table('users')->insert([
+        $users = [
             [
-                'name' => $name,
-                'email' => $email,
-                'role_as' => $role, // Set the role_as to 1 for admin
-                'password' => Hash::make('password_admin'), // Set the password to "password_admin"
-                'remember_token' => null,
+                'name' => 'Admin IronHulk',
+                'email' => 'admin@example.com',
+                'role_as' => 1,
+                'password' => Hash::make('password_admin'),
                 'created_at' => now(),
                 'updated_at' => now(),
+
             ],
-        ]);
+
+        ];
+
+        DB::table('users')->insert($users);
     }
 }
