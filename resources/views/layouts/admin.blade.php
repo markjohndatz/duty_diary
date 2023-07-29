@@ -1,7 +1,6 @@
 
-@include('layouts.partials._head')
+@include('layouts.admin-partials._header')
 
-<body id="page-top">
 
 <div id="app">
 
@@ -10,7 +9,7 @@
 
           <!-- Sidebar -->
 
-            @include('layouts.partials._sidebar')
+            @include('layouts.admin-partials._sidebar')
             
         <!-- End of Sidebar -->
         
@@ -23,7 +22,7 @@
 
                 <!-- Topbar -->
 
-                @include('layouts.partials._topbar')
+                @include('layouts.admin-partials._topbar')
 
                 <!-- End of Topbar -->
 
@@ -41,7 +40,7 @@
 
             <!-- Footer -->
 
-            @include('layouts.partials._footer-block')
+            @include('layouts.admin-partials._footer-block')
 
             <!-- End of Footer -->
 
@@ -58,10 +57,8 @@
 
               <!--logout modal -->
                   
-        @include('layouts.partials._logout-modal')
+        @include('layouts.admin-partials._logout-modal')
 
             <!--Scripts -->
-         @include('layouts.partials._scripts')
+         @include('layouts.admin-partials._scripts')
 
-</body>
-</html>
