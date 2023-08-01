@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class UsersController extends Controller
 {
@@ -13,7 +16,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view ('admin.users.index');
+        $users = User::all();
+
+    
+        // dd($users);
+        return view ('admin.users.index')->with('users',$users);
     }
 
     /**
@@ -23,7 +30,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
+
     }
 
     /**
@@ -34,7 +42,27 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+           $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'role' => 'required|in:1,2,3',
+                'email' => 'required|email',
+                'password' => 'required|min:8',
+              
+            ]);
+            // dd($validatedData);
+
+            $user = User::create([
+                'name' => $request->name,
+                'role_as' => $request->role,
+                'email' => $request->email,
+                'password' => Hash::make($request->input('temp-password')),
+            ]);
+
+            $users = User::all();
+
+            return view('admin.users.index')->with('users',$users);
+
     }
 
     /**
