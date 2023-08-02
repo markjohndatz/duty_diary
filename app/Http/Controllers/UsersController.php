@@ -61,6 +61,8 @@ class UsersController extends Controller
 
             $users = User::all();
 
+
+            // return redirect()->route('users.index')->with('success', 'New user added successfully!');
             return view('admin.users.index')->with('users',$users);
 
     }
@@ -139,6 +141,14 @@ class UsersController extends Controller
         $userName = $deleteUser->name;
         $deleteUser->destroy($id);
 
+
+        if($deleteUser){
+            
+            return response()->json(['message' => $userName . 'deleted successfully']);
+        }else
+         {
+            return response()->json(['error' => 'Failed to delete!']);
+        }
         
     }
 }
