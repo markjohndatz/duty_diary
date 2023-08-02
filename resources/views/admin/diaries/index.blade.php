@@ -4,46 +4,21 @@
 
 <div class="container">
     <div class="card">
-        <div class="card-header">Diaries</div>
-        <div class="card-body">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Action</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Approval</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td><a href="" class="btn btn-warning">Edit</a>
-                      <button class="btn btn-danger">Delete</button>
-                    </td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr> 
-                  <tr>
-                    <th scope="row">2</th>
-                    <td><button class="btn btn-warning">Edit</button>
-                      <button class="btn btn-danger">Delete</button>
-                    </td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td><button class="btn btn-warning">Edit</button>
-                      <button class="btn btn-danger">Delete</button>
-                    </td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
+      <div class="card-header">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <i class="fas fa-solid fa-book"></i>
+                Diaries
+            </div>
+            <div class="col-md-6 col-12 text-right">
+                <a href="{{ route('diaries.create') }}" class="btn btn-sm btn-primary">New Diary</a>
+            </div>
         </div>
-        <div class="card-footer"></div>
+      </div>
+      <div class="card-body">
+        
+      </div>
+        <div class="card-footer">
       </div>
 </div>
 @endsection

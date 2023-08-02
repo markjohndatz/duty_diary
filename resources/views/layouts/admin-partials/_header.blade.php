@@ -10,6 +10,10 @@
 
     <title>Diary</title>
 
+     <!-- Favicon -->
+     <link rel="icon" type="image/x-icon" href="{{ asset('image/book-png-18.ico') }}">
+
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -28,6 +32,11 @@
 
     <!-- Custom styles for this template-->
     <link href="{{  asset('css/sb-admin-2.min.css') }}" rel="stylesheet"> 
+
+        <!-- Sweetalert cdn-->
+
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    
 
 </head>
 <body id="page-top">

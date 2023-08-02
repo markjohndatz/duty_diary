@@ -11,6 +11,9 @@
 
     <title>Diary - Login</title>
 
+     <!-- Favicon -->
+     <link rel="icon" type="image/x-icon" href="{{ asset('image/book-png-18.ico') }}">
+
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

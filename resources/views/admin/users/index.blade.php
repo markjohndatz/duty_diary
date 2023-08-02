@@ -18,11 +18,12 @@
                 <table class="table table-sm table-hover mb-0">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Role</th>
+                            <th scope="col">Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -30,14 +31,10 @@
                             @foreach ($users as $index => $user)
                                 <tr>
                                     <th scope="row">{{ $index + 1 }}</th>
-                                    <td>
-                                        <a href="{{ route('users.edit', $user->id) }}"
-                                            class="btn btn-sm btn-success">Edit</a>
-                                        <button onclick="confirmDelete({{ $user->id }})"
-                                            class="btn btn-sm btn-danger">Delete</button>
-                                    </td>
+                                   
                                     <td> {{ $user->name }} </td>
                                     <td> {{ $user->email }} </td>
+                                    
 
                                     <td>
                                         @if ($user->role_as == 1)
@@ -49,6 +46,13 @@
                                         @endif
 
                                     </td>
+
+                                    <td>
+                                        <a href="{{ route('users.edit', $user->id) }}"
+                                            class="btn btn-sm btn-success">Edit</a>
+                                        <button onclick="clickDelete({{ $user->id }})"
+                                            class="btn btn-sm btn-danger">Delete</button>
+                                    </td>
                                 </tr>
                             @endforeach
                         @else
@@ -57,11 +61,13 @@
 
                     </tbody>
                 </table>
-                @if (isset($user_name))
-                    <div class="alert alert-success mb-0">
-                        <strong>Success!</strong> {{ $user_name }}'s information has been successfully updated.
-                    </div>
-                @endif
+                <div class="card-footer">
+                    @if (isset($user_name))
+                        <div class="alert alert-success mb-0">
+                            <strong>Success!</strong> {{ $user_name }}'s information has been successfully updated.
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

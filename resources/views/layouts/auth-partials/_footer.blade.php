@@ -7,7 +7,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
+    
 </body>
 
 </html>

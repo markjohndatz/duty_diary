@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-solid fa-book"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Diary</div>
+        <div class="sidebar-brand-text mx-3">Diary Admin</div>
     </a>
 
     <!-- Divider -->
@@ -23,6 +23,10 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+       <!-- Heading -->
+       <div class="sidebar-heading">
+        Users
+        </div>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
@@ -38,11 +42,18 @@
             <span>Documentations</span></a>
     </li>
 
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Supervisor
+    </div>
+
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('approval-requests.index') }}">
-         <i class="fas fa-solid fa-check"></i>
-         <span>Approval Requests</span></a>
+            <i class="fas fa-solid fa-file-circle-check"></i>
+            <span>Approval Requests</span></a>
     </li>
     
     <!-- Nav Item - Tables -->

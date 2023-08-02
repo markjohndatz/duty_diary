@@ -84,7 +84,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view ('admin.users.edit')->with('user', $user);
     }
 
     /**
@@ -96,7 +98,31 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'role' => 'required|in:1,2,3',
+            'email' => 'required|email',
+          
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user-> update([
+            'name' => $request->name,
+            'role_as' => $request->role,
+            'email' => $request->email,
+
+        ]);
+
+        $users = User::all();
+
+        return view ('admin.users.index')->with ([
+
+            'users' => $users,
+            'user_name' => $user->name,
+
+        ]);
+
     }
 
     /**
@@ -107,6 +133,12 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteUser = User::findOrFail($id);
+
+        
+        $userName = $deleteUser->name;
+        $deleteUser->destroy($id);
+
+        
     }
 }
