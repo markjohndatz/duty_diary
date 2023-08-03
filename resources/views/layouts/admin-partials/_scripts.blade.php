@@ -24,13 +24,13 @@
             let userId = id;
 
             Swal.fire({
-                title: 'Arat RG?',
-                text: "Dili gyud ka ikaw!",
+                title: 'Are you sure?',
+                text: "Ayaw dugaya!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'G!'
+                confirmButtonText: 'Click na!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch(`/users/${userId}`, {

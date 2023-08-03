@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Documentation;
+use App\Http\Controllers\DocumentationsController;
 
 class DocumentationsController extends Controller
 {
@@ -34,8 +36,34 @@ class DocumentationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        $request->validate([
+            'doc_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size if needed
+        ]);
+
+        if ($request->hasFile('doc_img')) {
+
+            $imageFile = $request->file('doc_img');
+         
+            $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+
+            
+            $filename = $originalName . "-" . time() . '.' . $imageFile->getClientOriginalExtension();
+
+             
+            $path = $imageFile->storeAs('public/images', $filename);
+
+            
+            
+
+            
+
+            return view('admin.documentations.index')->with('success', 'Image uploaded successfully.');
+        }
+
     }
+    
 
     /**
      * Display the specified resource.
