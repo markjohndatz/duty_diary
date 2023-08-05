@@ -1,5 +1,6 @@
 <script>
-
-$('doc_img').dropify();
-
-</script>    
+    $(document).ready(function() {
+      $('.dropify').dropify();
+    });
+  </script>
+  

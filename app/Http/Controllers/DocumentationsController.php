@@ -15,6 +15,7 @@ class DocumentationsController extends Controller
      */
     public function index()
     {
+
         return view ('admin.documentations.index');
     }
 
@@ -54,13 +55,15 @@ class DocumentationsController extends Controller
              
             $path = $imageFile->storeAs('public/images', $filename);
 
-            
-            
-
-            
+            $document = new Document();
+            $document->name = $originalName;
+            $document->image = $filename;
+            $document->caption = $request->input('caption');
+            $document->save();
 
             return view('admin.documentations.index')->with('success', 'Image uploaded successfully.');
         }
+        return redirect()->back()->with('error', 'No image file uploaded.');
 
     }
     

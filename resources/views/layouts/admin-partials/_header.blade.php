@@ -17,11 +17,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-        <!-- jQuery Scripts -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-
-    <!-- Dropify Scripts -->
-    <script src="{{ asset('js/dropify.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -44,8 +39,16 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
 
        <!-- Dropify CSS-->
-    <link rel="stylesheet" href="{{ asset('css/dropify') }}">
+
+       <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
+
+           <!-- jQuery Scripts -->
     
+       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <!-- Dropify Scripts -->
+        <script src="{{ asset('js/dropify.js') }}"></script>
+
 
 </head>
 <body id="page-top">
