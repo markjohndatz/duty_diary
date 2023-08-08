@@ -23,10 +23,6 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-       <!-- Heading -->
-       <div class="sidebar-heading">
-        Users
-        </div>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
@@ -43,11 +39,6 @@
     </li>
 
     <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Supervisor
-    </div>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">

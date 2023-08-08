@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 
+
 class UsersController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class UsersController extends Controller
         $users = User::all();
 
     
-        // dd($users);
+    
         return view ('admin.users.index')->with('users',$users);
     }
 

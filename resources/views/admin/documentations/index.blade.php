@@ -5,7 +5,7 @@
 <div class="container">
 
     <div class="card">
-        <form action="{{ route('documentations.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('documentations.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="card-header">
                     <div class="row">
@@ -20,15 +20,17 @@
                     </div>       
                 </div>
                 <div class="card-body row ">
-                    <div class="col-md-4 col-12 ">
-                        <img src="{{ asset ('storage/images/dota-2-logo.0-1691036824.jpg') }}" alt="logo" class="img-fluid">
-                    </div>
-                    <div class="col-md-4 col-12">
-                       <img src="{{ asset ('storage/images/dota-2-logo.0-1691036824.jpg') }}" alt="logo" class="img-fluid">
-                     </div>
-                    <div class="col-md-4 col-12">
-                       <img src="{{ asset ('storage/images/dota-2-logo.0-1691036824.jpg') }}" alt="logo" class="img-fluid">
-                     </div>
+                    @if(isset($docs) && $docs->count() > 0)
+                    @foreach ($docs as $doc)
+                        <div class="col-md-3 col-sm-4 col-12 shadow-sm position-static mt-3">
+                            <a href="{{ asset('storage/images/'.$doc->image) }}" data-lightbox="lightbox-img" data-title="{{ $doc->caption }}" data-alt="{{ $doc->caption }}">
+                                <img src="{{ asset('storage/images/'.$doc->image) }}" alt="{{ $doc->caption }}" class="img-fluid">
+                            </a>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="alert alert-danger">Sorry, there are no files or documentations at the moment</div>
+                @endif
                 </div>
                <div class="card-footer">
 
@@ -41,7 +43,7 @@
 
 
 @include('admin.documentations.partials._modal')
-@include('admin.documentations.partials._scripts')
 
+@include('admin.documentations.partials._scripts')
     
 @endsection

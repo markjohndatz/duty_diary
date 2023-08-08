@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documentation;
-use App\Http\Controllers\DocumentationsController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class DocumentationsController extends Controller
 {
@@ -16,7 +18,8 @@ class DocumentationsController extends Controller
     public function index()
     {
 
-        return view ('admin.documentations.index');
+        $docs = Documentation::latest()->get();
+        return view('admin.documentations.index')->with('docs',$docs);
     }
 
     /**
@@ -37,34 +40,38 @@ class DocumentationsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-
+        
         $request->validate([
-            'doc_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size if needed
+            'doc_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'caption' => 'required',
         ]);
 
+        // Check if the request has a file
         if ($request->hasFile('doc_img')) {
-
             $imageFile = $request->file('doc_img');
-         
-            $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
 
-            
-            $filename = $originalName . "-" . time() . '.' . $imageFile->getClientOriginalExtension();
+            // Generate a unique filename
+            $filename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME) . "-" . time() . '.' . $imageFile->getClientOriginalExtension();
 
-             
+            // Store the file
             $path = $imageFile->storeAs('public/images', $filename);
 
-            $document = new Document();
-            $document->name = $originalName;
-            $document->image = $filename;
-            $document->caption = $request->input('caption');
-            $document->save();
+            // Get the authenticated user's ID
+            $userId = Auth::id();
 
-            return view('admin.documentations.index')->with('success', 'Image uploaded successfully.');
+            // Create a new entry in the database
+            Documentation::create([
+                'image' => $filename,
+                'caption' => $request->caption,
+                'author_id' => $userId,
+            ]);
+
+            // Redirect back with a success message
+            return redirect()->back()->with('uploadSuccess', 'The image ' . $filename . ' was successfully uploaded!');
         }
-        return redirect()->back()->with('error', 'No image file uploaded.');
 
+        // Handle if no file was uploaded (you can customize this part as needed)
+        return redirect()->back()->with('uploadError', 'No file was uploaded.');
     }
     
 

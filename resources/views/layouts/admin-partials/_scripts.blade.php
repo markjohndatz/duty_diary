@@ -4,7 +4,7 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
 
     <!-- Core plugin JavaScript-->
-    {{-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> --}}
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
@@ -15,14 +15,18 @@
 
         <!-- Sweetalert scripts-->
 
-    <script src="sweetalert2.all.min.js"></script>
+    {{-- <script src="sweetalert2.all.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-     <!-- jQuery Scripts -->
-      <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-
-    <!-- Dropify Scripts -->
+    
+     <!-- Dropify Scripts -->
      <script src="{{ asset('js/dropify.js') }}"></script>
+
+     <!-- Lightbox Scripts -->
+     <script src="path/to/lightbox.js"></script>
+
+     
+     
 
 
     <script>

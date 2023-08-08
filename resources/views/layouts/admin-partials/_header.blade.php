@@ -42,13 +42,21 @@
 
        <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
 
-           <!-- jQuery Scripts -->
-    
-       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <!-- jQuery Scripts -->
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
         <!-- Dropify Scripts -->
         <script src="{{ asset('js/dropify.js') }}"></script>
 
+       <!-- Lightbox CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css">
+        <!-- Lightbox JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+                
+       
 
 </head>
 <body id="page-top">
