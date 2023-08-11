@@ -62,8 +62,6 @@ class UsersController extends Controller
 
             $users = User::all();
 
-
-            // return redirect()->route('users.index')->with('success', 'New user added successfully!');
             return view('admin.users.index')->with('users',$users);
 
     }

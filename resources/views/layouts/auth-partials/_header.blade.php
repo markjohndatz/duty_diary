@@ -23,6 +23,10 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <style>
+        .img-gif {padding:6em;}
+    </style>   
+
 </head>
 
 <body class="bg-gradient-primary">

@@ -11971,4 +11971,7 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+  .img-gif {
+    padding: 6em;
+  }
 }

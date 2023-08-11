@@ -16,7 +16,7 @@
         @endauth
     </div>
     <div class="col-12 col-md-4 offset-4">
-        <img src="{{ asset('/image/warning.jpg') }}" alt="Not Authorized" class="img-fluid">
+        <img src="{{ asset('/image/cute.gif') }}" alt="Not Authorized" class="img-fluid">
     </div>
 </div>
 @endsection 
