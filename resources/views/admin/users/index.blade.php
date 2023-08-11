@@ -9,13 +9,10 @@
                         <i class="fas fa-solid fa-users"></i>
                         Users
                     </div>
-                    <div class="col-md-6 col-12 text-right">
-                        <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">New User</a>
-                    </div>
                 </div>
             </div>
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0" id="users-table">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -27,37 +24,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (isset($users) && $users->count() > 0)
-                            @foreach ($users as $index => $user)
-                                <tr>
-                                    <th scope="row">{{ $index + 1 }}</th>
-                                   
-                                    <td> {{ $user->name }} </td>
-                                    <td> {{ $user->email }} </td>
-                                    
-
-                                    <td>
-                                        @if ($user->role_as == 1)
-                                            <span class="badge badge-danger">Administrator</span>
-                                        @elseif($user->role_as == 2)
-                                            <span class="badge badge-warning">Supervisor</span>
-                                        @else
-                                            <span class="badge badge-secondary">Trainee</span>
-                                        @endif
-
-                                    </td>
-
-                                    <td>
-                                        <a href="{{ route('users.edit', $user->id) }}"
-                                            class="btn btn-sm btn-success">Edit</a>
-                                        <button onclick="clickDelete({{ $user->id }})"
-                                            class="btn btn-sm btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <div class="alert alert-danger">No Users found</div>
-                        @endif
 
                     </tbody>
                 </table>
@@ -71,4 +37,7 @@
             </div>
         </div>
     </div>
+
+    @include('admin.users.partials._datatables-scripts')
+
 @endsection

@@ -57,6 +57,31 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
                 
        
+       
+       <style>
+            #users-table_length,
+            #users-table_filter{
+                padding: 0 15px;
+            }
+
+            #users-table_filter{
+                text-align: right;
+            }
+
+            #users-table_filter label{
+                text-align: left;
+            }
+
+            #users-table_paginate{
+                display: flex;
+                justify-content: end;
+            }
+
+            #users-table_info,
+            #users-table_paginate .pagination{
+                margin: 15px;
+            }
+       </style>
 
 </head>
 <body id="page-top">
