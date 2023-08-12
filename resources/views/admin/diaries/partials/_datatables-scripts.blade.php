@@ -6,7 +6,7 @@
             },
             processing: true,
             serverSide: true,
-            ajax: '{{ route('users.index') }}',
+            ajax: '{{ route('diaries.index') }}',
             columns: [
                 {
                     data: 'DT_RowIndex',
@@ -15,8 +15,8 @@
                 {
                     data: 'title',
                     name: 'title',
-                    orderable: false
                 },
+               
                 {
                     data: 'status',
                     name: 'status'
@@ -24,10 +24,12 @@
                 {
                     data: 'action',
                     name: 'action'
+                    orderable: false
                 },
             ],
             "order": [[ 3, 'asc']]
         });
+
     } );
 
     

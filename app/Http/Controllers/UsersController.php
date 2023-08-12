@@ -145,13 +145,12 @@ class UsersController extends Controller
         $deleteUser->destroy($id);
 
 
-        if($deleteUser){
-            
-            return response()->json(['message' => $userName . 'deleted successfully']);
-        }else
-         {
-            return response()->json(['error' => 'Failed to delete!']);
+        if ($deleteUser->delete()) {
+            return redirect()->route('users.index')->with('success', $userName . ' deleted successfully');
+        } else {
+            return redirect()->route('users.index')->with('error', 'Failed to delete!');
         }
+        
         
     }
 
@@ -171,15 +170,19 @@ class UsersController extends Controller
                     return $role;
                 })
                 ->addColumn('action', function($data){
-                    $actionButtons = '<a href="" data-id="'.$data->id.'" class="btn btn-sm btn-warning editUser">
-                                        <i class="fas fa-edit"></i>
-                                      </a>
-                                      <a href="" data-id="'.$data->id.'" class="btn btn-sm btn-danger deleteUser">
-                                        <i class="fas fa-trash"></i>
-                                      </a>';
+                    $actionButtons = '<a href="'.route('users.edit', $data->id).'" class="btn btn-sm btn-warning editUser">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form action="'.route('users.destroy', $data->id).'" method="POST" class="d-inline">
+                                    '.csrf_field().'
+                                    '.method_field('DELETE').'
+                                    <button type="submit" class="btn btn-sm btn-danger deleteUser">
+                                    <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>';
                     return $actionButtons;
                 })
-                ->rawColumns(['action','role'])
+                ->rawColumns(['action','role']) 
                 ->make(true);
     }
 }
