@@ -48,25 +48,25 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         
-           $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'role' => 'required|in:1,2,3',
-                'email' => 'required|email',
-                'password' => 'required|min:8',
-              
-            ]);
-            // dd($validatedData);
-
-            $user = User::create([
-                'name' => $request->name,
-                'role_as' => $request->role,
-                'email' => $request->email,
-                'password' => Hash::make($request->input('temp-password')),
-            ]);
-
-            $users = User::all();
-
-            return view('admin.users.index')->with('users',$users);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'role' => 'required|in:1,2,3',
+            'email' => 'required|email|unique:users', // Make sure email is unique
+            'password' => 'required|min:8',
+        ]);
+        
+        // You should use $request->input('password') instead of 'temp-password'
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'role_as' => $validatedData['role'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
+        
+        $users = User::all();
+        
+        return view('admin.users.index')->with('users', $users);
+        
 
     }
 

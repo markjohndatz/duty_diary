@@ -30,12 +30,8 @@
                 @foreach ($diaries as $diary)
                     <tr>
                         <td>{{ $diary->id }}</td>
-                        <td>
-                            <!-- Add any action buttons or links here -->
-                            <a href="{{ route('diaries.edit', $diary->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                            <button onclick="confirmDelete({{ $diary->id }})" class="btn btn-sm btn-danger">Delete</button>
-                        </td>
-                        <td> 
+                      
+                        <td>  
                             @if ($diary->author)
                             EOD REPORT for {{ $diary->created_at->format('F d, Y') }} by {{ $diary->author->name }}
                             @else
@@ -48,6 +44,11 @@
                             @else
                                 <span class="badge badge-success">Approved</span>
                             @endif
+                        </td>
+                        <td>
+                            <!-- Add any action buttons or links here -->
+                            <a href="{{ route('diaries.edit', $diary->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                            <button onclick="confirmDelete({{ $diary->id }})" class="btn btn-sm btn-danger">Delete</button>
                         </td>
                     </tr>   
                 @endforeach
