@@ -81,6 +81,9 @@
             #users-table_paginate .pagination{
                 margin: 15px;
             }
+            .active-bg {
+                background-color: #0275d8;
+            }
        </style>
 
 </head>

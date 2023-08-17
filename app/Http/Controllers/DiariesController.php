@@ -159,31 +159,27 @@ class DiariesController extends Controller
     {
         return DataTables::of($request)
             ->addIndexColumn()
-            ->addColumn('title', function($data){
+            ->addColumn('title', function ($data) {
                 $date = $data->created_at->format('F j, Y');
-                $author = User::where('id','=',$data->author_id)->first();
-                return 'EOD Report for '.$date.' by '.$author->name;
-            })
-            ->addColumn('status', function($data){
-                $status = '';
-                if($data->status == 0){
-                    $status = '<span class="badge badge-danger">Pending</span>';                        
+
+                // Retrieve the author using the relationship (assuming your relationship method is 'author')
+                $author = $data->author;
+
+                // If the author exists, display the author's name
+                if ($author) {
+                    return 'EOD Report for ' . $date . ' by ' . $author->name;
                 } else {
-                    $status = '<span class="badge badge-success">Approved</span>';
+                    return 'EOD Report for ' . $date . ' by Unknown Author';
                 }
-                return $status;
             })
-            ->addColumn('action', function($data){
-                $actionButtons = '<a href="'.route("diaries.edit",$data->id).'" data-id="'.$data->id.'" class="btn btn-sm btn-warning editDiary">
-                                    <i class="fas fa-edit"></i>
-                                  </a>
-                                  <button data-id="'.$data->id.'" class="btn btn-sm btn-danger deleteDiary">
-                                    <i class="fas fa-trash"></i>
-                                  </button>';
-                return $actionButtons;
+            ->addColumn('status', function ($data) {
+                // ... (status column logic)
             })
-            ->rawColumns(['title','status','action']) // Include 'title' in rawColumns
+            ->addColumn('action', function ($data) {
+                // ... (action column logic)
+            })
+            ->rawColumns(['title', 'status', 'action'])
             ->make(true);
     }
-    
+
 }

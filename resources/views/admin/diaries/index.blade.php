@@ -39,7 +39,7 @@
                             @endif
                         </td>
                         <td>
-                            @if ($diary->status == 1)
+                                    @if ($diary->status == 1)
                                 <span class="badge badge-warning">Pending</span>
                             @else
                                 <span class="badge badge-success">Approved</span>

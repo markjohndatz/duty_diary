@@ -40,3 +40,15 @@ Route::resource('/approval-requests',ApprovalRequestController::class);
 Route::resource('/users',UsersController::class);
 
 });
+
+ // Apply the middleware for admin-only routes 
+ //This is just a test
+
+Route::middleware('role:1')->group(function () {
+    Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
+
+    Route::resource('/diaries', DiariesController::class);
+    Route::resource('/documentations', DocumentationsController::class);
+    Route::resource('/approval-requests', ApprovalRequestController::class);
+    Route::resource('/users', UsersController::class);
+});

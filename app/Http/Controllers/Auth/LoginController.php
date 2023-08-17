@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
+// use Illuminate\Http\Request;
+
+
 
 class LoginController extends Controller
 {
@@ -37,4 +41,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     // Set the USERROLE session variable based on the user's role
+    //     Session::put('USERROLE', $user->role_as);
+
+    //     // Redirect the user to the intended page after successful login
+    //     return redirect()->intended($this->redirectTo);
+    // }
 }
