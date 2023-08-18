@@ -27,7 +27,7 @@
                   </tr>
               </thead>
               <tbody>
-                @foreach ($diaries as $diary)
+                {{-- @foreach ($diaries as $diary)
                     <tr>
                         <td>{{ $diary->id }}</td>
                       
@@ -51,7 +51,7 @@
                             <button onclick="confirmDelete({{ $diary->id }})" class="btn btn-sm btn-danger">Delete</button>
                         </td>
                     </tr>   
-                @endforeach
+                @endforeach --}}
             </tbody>
           </table>
           <div class="card-footer">
