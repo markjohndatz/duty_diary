@@ -55,8 +55,7 @@ class CheckRouteAccess
         $currentRouteName = $request->route()->getName();
 
         $isProtectedRoute = in_array($currentRouteName, $protectedRoutes);
-        // dd($currentRouteName, $isProtectedRoute, Auth::check());
-
+       
         if ($isProtectedRoute && !Auth::check()) {
             return redirect()->route('not-authorized');
         }
@@ -64,7 +63,7 @@ class CheckRouteAccess
         if (Auth::check()) {
             $user = Auth::user();
             $allowedRoles = [];
-            // dd($currentRouteName, $user->role_id);
+       
             if ($currentRouteName === 'admin' || (in_array($currentRouteName,[
                 'profile.index',
                 'profile.update',

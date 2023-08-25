@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Diary;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Diary;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class ApprovalRequestController extends Controller
@@ -30,7 +30,6 @@ class ApprovalRequestController extends Controller
         };
 
         return view('admin.approval-requests.index');
-
     }
 
     /**
@@ -154,7 +153,9 @@ class ApprovalRequestController extends Controller
                                       <button data-id="'.$data->id.'" class="btn btn-sm btn-success '.$hideApproveBtn.'btn-'.$data->id.'" onclick="approveDiary('.$data->id.')">
                                         <i class="fas fa-check"></i>
                                       </button>';
-                                  
+                                    //   <button data-id="'.$data->id.'" class="btn btn-sm btn-danger '.$hideRejectBtn.'" onclick="rejectDiary('.$data->id.')">
+                                    //     <i class="fas fa-times"></i>
+                                    //   </button>
                     return $actionButtons;
                 })
                 ->rawColumns(['action','role','author','status'])

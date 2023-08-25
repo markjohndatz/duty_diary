@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <label for="roadblocks">Roadblocks</label>
-                        <textarea class="form-control" id="roadblock" name="roadblock" rows="3">{{ old('roadblocks') }}</textarea>
+                        <textarea class="form-control" id="roadblock" name="roadblock" rows="3">{{ old('roadblock') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="summary">Summary of the Day</label>

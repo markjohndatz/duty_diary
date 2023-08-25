@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         if (Auth::check()) {
             $userName = Auth::user()->name;
-            $userRole = Auth::user()->role_id;
+            $userRole = Auth::user()->role_as;
 
             Session::put('USERNAME', $userName);
             Session::put('USERROLE', $userRole);

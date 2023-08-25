@@ -8,9 +8,6 @@
         <div class="sidebar-brand-text mx-3">Diary Admin</div>
     </a>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
         <a class="nav-link" href="/admin">
@@ -36,8 +33,8 @@
             <i class="fas fa-solid fa-images"></i>
             <span>Documentations</span></a>
     </li>
-    {{-- @if(Session::get('USERROLE') == 1 || Session::get('USERROLE') == 2) --}}
-    <hr class="sidebar-divider">
+    @if(Session::get('USERROLE') == 1 || Session::get('USERROLE') == 2)
+
 
     <!-- Nav Item - Approval Requests (Accessible by admin and supervisor) -->
     <li class="nav-item {{ Str::is('approval-requests*', request()->route()->getName()) ? 'active' : '' }}">
@@ -47,9 +44,9 @@
     </li>
     
  
-    {{-- @endif --}}
+    @endif
 
-    {{-- @if(Session::get('USERROLE') == 1) --}}
+    @if(Session::get('USERROLE') == 1)
    
         <!-- Nav Item - Users (Accessible only by admin) -->
         <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
@@ -59,6 +56,6 @@
             </a>
         </li>
         
-        {{-- @endif --}}
+    @endif
 
 </ul>

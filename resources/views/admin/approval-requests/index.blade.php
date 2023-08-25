@@ -7,7 +7,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6 col-12">
-                    <i class="fas fa-solid fa-book-open"></i>
+                    <i class="fas fa-solid fa-file-circle-check"></i>
                     Approval Requests
                 </div>
             </div>

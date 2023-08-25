@@ -42,11 +42,17 @@
 
        <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
 
+       <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+
      <!-- jQuery Scripts -->
 
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    {{-- SweetAlert Script --}}
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
 
         <!-- Dropify Scripts -->
         <script src="{{ asset('js/dropify.js') }}"></script>
@@ -55,8 +61,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css">
         <!-- Lightbox JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-                
-       
+             
+
+        {{-- TinyMCE --}}
+        <script src="https://cdn.tiny.cloud/1/f91h8ob9cbvkiqq7t8c04i5g7mpzus8bufl7tdxkfq8cydqj/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        
        
        <style>
             #users-table_length,
