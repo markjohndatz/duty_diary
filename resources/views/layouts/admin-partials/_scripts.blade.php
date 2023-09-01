@@ -77,10 +77,51 @@
         }
             
 
-        
+        function clickDeleteDiary(id) {
+            let userId = id;
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Ayaw dugaya!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Click na!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/users/${userId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            location.reload(); 
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Failed to delete user.',
+                                icon: 'error'
+                            });
+                        }
+                    }).catch(error => {
+                        console.error('Error deleting user:', error);
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'An error occurred while deleting the user.',
+                            icon: 'error'
+                        });
+                    });
+                }
+            });
+        }
+                
    
 
     </script>
+
           {{-- TinyMCE Script --}}
     <script>
         tinymce.init({

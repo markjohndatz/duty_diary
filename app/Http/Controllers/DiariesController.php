@@ -165,7 +165,7 @@ class DiariesController extends Controller
                 'diaries'=>$diaries,
                 'success' => $message
             ]);
-            // return redirect()->route('success')->with('success', 'Data saved successfully!');
+          
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }

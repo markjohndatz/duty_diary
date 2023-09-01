@@ -100,6 +100,76 @@ class ApprovalRequestController extends Controller
         //
     }
 
+    public function approve(Request $request, $id)
+    {
+        try {
+            $diary = Diary::findOrFail($id);
+            
+            $diary->update([
+                'status' => 1,
+                'supervisor_id' => Auth::user()->id
+            ]);
+        
+            if ($diary) {
+                $title = '';
+                $user = User::where('id', '=', $diary->author_id)->first();
+                if ($user) {
+                    $date = $user->created_at->format('M d, Y');
+                    $name = $user->name;
+                    $title = 'EOD Report by ' . $name . ' on ' . $date;
+                }
+        
+                $trainee = User::where('id', '=', $diary->author_id)->first();
+                $supervisor = User::where('id', '=', $diary->supervisor_id)->first();
+                $approvedDiary = [
+                    'trainee' => $trainee ? $trainee->name : '',
+                    'supervisor' => $supervisor ? $supervisor->name : '',
+                    'sup_email' => $supervisor ? $supervisor->email : '',
+                    'url' => route('approval-requests.show', $diary->id),
+                ];
+        
+                $successMessage = $title ? $title . ' has been approved!' : 'Diary has been approved!';
+                return response()->json(['successMessage' => $successMessage]);
+            } else {
+                return response()->json(['errorMessage' => 'Diary not found.']);
+            }
+        } catch (\Exception $e) {
+        
+            return response()->json([
+                'errorMessage' => 'An error occurred while approving the diary. Details: ' . $e->getMessage()
+            ]);
+        }
+        
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function reject(Request $request, $id)
+    {
+        $diary = Diary::findOrFail($id);
+            
+        $diary->update([
+            'status' => 2
+        ]);
+
+        if($diary){
+            $title = '';
+            $user = User::where('id','=',$diary->author_id)->first();
+            $date = $user->created_at->format('M d, Y');
+            $name = $user->name;
+            $title = 'EOD Report by ' . $name . ' on ' . $date;
+        }
+        
+        $rejectMessage = $title .' has been rejected!';
+        return response()->json(['rejectMessage' => $rejectMessage]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -16,15 +16,17 @@
                             <i class="fas fa-solid fa-chevron-left"></i>
                             Back
                         </a>
-                        <a href="{{ route('approval-requests.print', $diary['diary']->id) }}" class="btn btn-sm btn-warning" target="_blank">
-                            <i class="fas fa-solid fa-print"></i>
+                        {{-- <a href="{{ route('approval-requests.print', $diary['diary']->id) }}" class="btn btn-sm btn-warning" target="_blank">
+                            <i class="fas fa-solid fa-print"></i> --}}
                         </a>
                         @if (Auth::user()->role_as == 1 || Auth::user()->role_as == 2)
                             @if ($diary['diary']->status == 0)
                                 <button class="btn btn-sm btn-success" onclick="approveDiary({{$diary['diary']->id}})">
                                     <i class="fas fa-check"></i> Approve
                                 </button>
+
                                 @include('admin.approval-requests.partials._scripts')
+                                
                             @endif
                         @endif
                     </div>
