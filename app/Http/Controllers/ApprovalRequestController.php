@@ -223,9 +223,7 @@ class ApprovalRequestController extends Controller
                                       <button data-id="'.$data->id.'" class="btn btn-sm btn-success '.$hideApproveBtn.'btn-'.$data->id.'" onclick="approveDiary('.$data->id.')">
                                         <i class="fas fa-check"></i>
                                       </button>';
-                                    //   <button data-id="'.$data->id.'" class="btn btn-sm btn-danger '.$hideRejectBtn.'" onclick="rejectDiary('.$data->id.')">
-                                    //     <i class="fas fa-times"></i>
-                                    //   </button>
+                
                     return $actionButtons;
                 })
                 ->rawColumns(['action','role','author','status'])

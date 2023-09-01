@@ -35,87 +35,123 @@
 
     <script>
 
-        function clickDelete(id) {
-            let userId = id;
+    function confirmDelete(id){
+                let userId = id;
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
 
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Ayaw dugaya!",
+                swalWithBootstrapButtons.fire({
+                    title: 'Are you sure you want to delete this user?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result)=>{
+                    if(result.isConfirmed){
+                        $.ajax({
+                            url: `/users/${userId}`,
+                            type: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json'
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: '',
+                                    text: "Delete Successfully!",
+                                    icon: 'success',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Okay'
+                                    }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $('#users-table').DataTable().ajax.reload();
+                                    }
+                                })
+
+                            },
+                            error: function(error) {
+                                // Handle error response
+                                console.error('DELETE request failed:', error);
+                            }
+                        });
+                    } else {
+                        result.dismiss == Swal.DismissReason.cancel;
+                        swalWithBootstrapButtons.fire(
+                            'Okay, next time na lang!',
+                            'Wa madayon kay bata pa.',
+                            'error'
+                        );
+                    }
+                })
+            }
+                
+
+        function confirmDeleteDiary(id){
+            let userId = id;
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure you want to delete this diary?',
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Click na!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fetch(`/users/${userId}`, {
-                        method: 'DELETE',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result)=>{
+                if(result.isConfirmed){
+                    $.ajax({
+                        url: `/diaries/${userId}`,
+                        type: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
                             'Content-Type': 'application/json'
-                        }
-                    }).then(response => {
-                        if (response.ok) {
-                            location.reload(); 
-                        } else {
+                        },
+                        success: function(response) {
                             Swal.fire({
-                                title: 'Error',
-                                text: 'Failed to delete user.',
-                                icon: 'error'
-                            });
-                        }
-                    }).catch(error => {
-                        console.error('Error deleting user:', error);
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'An error occurred while deleting the user.',
-                            icon: 'error'
-                        });
-                    });
-                }
-            });
-        }
-            
+                                title: '',
+                                text: "Delete Successfully!",
+                                icon: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Okay'
+                                }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $('#diaries-table').DataTable().ajax.reload();
+                                }
+                            })
 
-        function clickDeleteDiary(id) {
-            let userId = id;
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Ayaw dugaya!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Click na!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fetch(`/users/${userId}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Content-Type': 'application/json'
+                        },
+                        error: function(error) {
+                            // Handle error response
+                            console.error('DELETE request failed:', error);
                         }
-                    }).then(response => {
-                        if (response.ok) {
-                            location.reload(); 
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Failed to delete user.',
-                                icon: 'error'
-                            });
-                        }
-                    }).catch(error => {
-                        console.error('Error deleting user:', error);
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'An error occurred while deleting the user.',
-                            icon: 'error'
-                        });
                     });
+                } else {
+                    result.dismiss == Swal.DismissReason.cancel;
+                    swalWithBootstrapButtons.fire(
+                        '',
+                        'Well Played',
+                        'error'
+                    );
                 }
-            });
+            })
         }
                 
    

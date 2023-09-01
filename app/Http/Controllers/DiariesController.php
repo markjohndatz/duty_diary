@@ -179,7 +179,7 @@ class DiariesController extends Controller
     public function destroy($id)
     {
         $deleteDiary = Diary::findOrFail($id);
-        $deleteDiary->destroy($id);
+        $deleteDiary->destroy($id); 
         if($deleteDiary){
             return response()->json(['message' => 'Diary deleted successfully']);
         } else {

@@ -58,6 +58,8 @@
         })
     }
 
+    
+
     function rejectDiary(diary){
         event.preventDefault();
         let id = diary;
