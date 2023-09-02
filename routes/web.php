@@ -37,8 +37,9 @@ Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->nam
 Route::resource('/diaries',DiariesController::class);
 Route::resource('/documentations',DocumentationsController::class);
 Route::resource('/approval-requests',ApprovalRequestController::class);
-Route::put('/approve/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestsController::class, 'approve'])->name('approval-requests.approve');
-Route::put('/reject/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestsController::class, 'reject'])->name('approval-requests.reject');
+Route::put('/approve/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestController::class, 'approve'])->name('approval-requests.approve');
+Route::put('/reject/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestController::class, 'reject'])->name('approval-requests.reject');
 Route::resource('/users',UsersController::class);
 
 });
+    

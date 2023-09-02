@@ -151,11 +151,11 @@ class DiariesController extends Controller
             ]);
             $diary = Diary::findOrFail($id);
             $diary->update([
-                'plan_today' => $request->plantoday,
-                'end_today' => $request->endtoday,
+                'plan_today' => $request->plan_today,
+                'end_today' => $request->end_today,
                 'roadblock' => $request->roadblock,
                 'summary' => $request->summary,
-                'plan_tomorrow' => $request->plantomorrow,
+                'plan_tomorrow' => $request->plan_tomorrow,
                 'author_id' => Auth::user()->id,
                 'supervisor_id' => $request->supervisor,
             ]);

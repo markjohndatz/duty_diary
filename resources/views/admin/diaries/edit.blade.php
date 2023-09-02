@@ -10,11 +10,11 @@
             <div class="card-body">
                     <div class="form-group">
                         <label for="todays-plan">Today's Plan</label>
-                        <textarea class="form-control" id="todays-plan" name="plantoday" rows="3">{{ $diary->plan_today }}</textarea>
+                        <textarea class="form-control" id="todays-plan" name="plan_today" rows="3">{{ $diary->plan_today }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="eod">End of Day Report</label>
-                        <textarea class="form-control" id="eod" name="eod" rows="3">{{ $diary->end_day }}</textarea>
+                        <textarea class="form-control" id="end_day" name="end_day" rows="3">{{ $diary->end_day }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="roadblocks">Roadblocks</label>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tomorrows-plan">Tomorrow's Plan</label>
-                        <textarea class="form-control" id="tomorrows-plan" name="plantomorrow" rows="3">{{ $diary->plan_tomorrow }}</textarea>
+                        <textarea class="form-control" id="tomorrows-plan" name="plan_tomorrow" rows="3">{{ $diary->plan_tomorrow }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="supervisor">Supervisor</label>

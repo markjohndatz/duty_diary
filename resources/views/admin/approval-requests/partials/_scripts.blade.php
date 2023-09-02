@@ -36,7 +36,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
 
-                                var currentRoute = "{{ Route::currentRouteName() }}";
+                                var currentRoute = "{{ Route::currentRouteName() }}"; 
 
                                 if (currentRoute === "{{ route('approval-requests.index') }}") {
                                     $('#approval-requests-table').DataTable().ajax.reload();
@@ -57,8 +57,6 @@
             }
         })
     }
-
-    
 
     function rejectDiary(diary){
         event.preventDefault();

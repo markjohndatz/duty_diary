@@ -4,8 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CheckRouteAccess
 {
@@ -41,6 +43,8 @@ class CheckRouteAccess
             'approval-requests.edit',
             'approval-requests.update',
             'approval-requests.destroy',
+            'approval-requests.approve',
+            'approval-requests.reject',
             'users.index',
             'users.create',
             'users.store',
@@ -91,6 +95,8 @@ class CheckRouteAccess
                     'approval-requests.edit',
                     'approval-requests.update',
                     'approval-requests.destroy',
+                    'approval-requests.approve',
+                    'approval-requests.reject',
                 ])) {
                 $allowedRoles = [1, 2];
             } elseif (in_array($currentRouteName,[
@@ -101,6 +107,8 @@ class CheckRouteAccess
                     'users.edit',
                     'users.update',
                     'users.destroy',
+                    'approval-requests.approve',
+                    'approval-requests.reject',
             ])) {
                 $allowedRoles = [1];
             }
