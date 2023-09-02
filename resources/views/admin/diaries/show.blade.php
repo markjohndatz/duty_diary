@@ -15,11 +15,11 @@
                         <i class="fas fa-solid fa-chevron-left"></i>
                         Back
                     </a>
-                    {{-- @if ($diary['diary']->status == 1)
+                    @if ($diary['diary']->status == 1)
                         <a href="{{ route('diaries.print', $diary['diary']->id) }}" class="btn btn-sm btn-warning" target="_blank">
                             <i class="fas fa-solid fa-print"></i>
                         </a>
-                    @endif --}}
+                    @endif
                 </div>
             </div>
         </div>

@@ -95,6 +95,26 @@ class DiariesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function print($id)
+    {
+        $diary = Diary::where('id','=',$id)->first();
+        $user = User::where('id','=',$diary->author_id)->first();
+        $date = $user->created_at->format('M d, Y');
+        $name = $user->name;
+        $sup = User::where('id','=',$diary->supervisor_id)->first();
+        $supervisor = $sup->name;
+        $title = 'EOD Report by ' . $name . ' on ' . $date;
+        $diary_details = [
+            'diary' => $diary,
+            'name' => $name,
+            'title' => $title,
+            'supervisor' => $supervisor,
+            'signature' => $sup->signature
+        ];
+        return view('admin.diaries.print')->with('diary',$diary_details);
+    }
+
     public function show($id)
     {
 
