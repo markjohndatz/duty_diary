@@ -46,7 +46,6 @@ class CheckRouteAccess
             'approval-requests.destroy',
             'approval-requests.print',
             'approval-requests.approve',
-            'approval-requests.reject',
             'users.index',
             'users.create',
             'users.store',
@@ -100,7 +99,7 @@ class CheckRouteAccess
                     'approval-requests.destroy',
                     'approval-requests.print',
                     'approval-requests.approve',
-                    'approval-requests.reject',
+                   
                 ])) {
                 $allowedRoles = [1, 2];
             } elseif (in_array($currentRouteName,[
@@ -113,7 +112,7 @@ class CheckRouteAccess
                     'users.destroy',
                     'approval-requests.print',
                     'approval-requests.approve',
-                    'approval-requests.reject',
+                    
             ])) {
                 $allowedRoles = [1];
             }

@@ -26,6 +26,7 @@
                     <th scope="col">Action</th>
                     <th scope="col">Title</th>
                     <th scope="col">Status</th>
+                   
                     </tr>
                 </thead>
                 <tbody>

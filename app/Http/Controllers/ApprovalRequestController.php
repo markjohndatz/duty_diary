@@ -100,6 +100,7 @@ class ApprovalRequestController extends Controller
         //
     }
 
+
     public function approve(Request $request, $id)
     {
         
@@ -145,25 +146,6 @@ class ApprovalRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function reject(Request $request, $id)
-    {
-        $diary = Diary::findOrFail($id);
-            
-        $diary->update([
-            'status' => 2
-        ]);
-
-        if($diary){
-            $title = '';
-            $user = User::where('id','=',$diary->author_id)->first();
-            $date = $user->created_at->format('M d, Y');
-            $name = $user->name;
-            $title = 'EOD Report by ' . $name . ' on ' . $date;
-        }
-        
-        $rejectMessage = $title .' has been rejected!';
-        return response()->json(['rejectMessage' => $rejectMessage]);
-    }
 
     /**
      * Remove the specified resource from storage.

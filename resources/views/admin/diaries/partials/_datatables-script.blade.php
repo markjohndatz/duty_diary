@@ -18,14 +18,17 @@
                      name: 'action',
                      orderable: false
                  },
+                
                  {
                      data: 'title',
                      name: 'title'
                  },
+                
                  {
                      data: 'status',
                      name: 'status'
                  },
+                
      
              ],
              "order": [[ 3, 'asc']]
