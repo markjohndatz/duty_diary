@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 
 
 class UsersController extends Controller
@@ -78,7 +79,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = User::find($id);
+        return view('admin.profile.index')->with('profile', $profile);
     }
 
     /**
@@ -128,6 +130,135 @@ class UsersController extends Controller
 
         ]);
 
+    }
+
+    public function updateProfilePic(Request $request, $id)
+    {
+        if(request()->ajax()){
+            try {            
+                $request->validate([
+                    'profilePic' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the image file
+                ]);
+        
+                if ($request->hasFile('profilePic')) {
+                    $imageFile = $request->file('profilePic');
+                    $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    
+                    $filename = $originalName . "-" . time() . '.' . $imageFile->getClientOriginalExtension();
+                    
+                    $path = 'uploads/profiles/'.$filename;
+                    $user = User::findOrFail($id);
+                    
+                    $user->update([
+                        'img' => $path,
+                        'isPicComplete' => 1
+                    ]);
+
+                    if($user){
+                        $imageFile->storeAs('public/uploads/profiles/', $filename);
+
+                        $successMessage = $user->name .'\'s profile picture successfully uploaded!';
+
+                        return response()->json(['successMessage' => $successMessage]);
+                    }
+                }
+                // return redirect()->route('success')->with('success', 'Data saved successfully!');
+            } catch (ValidationException $e) {
+                return redirect()->back()->withErrors($e->errors())->withInput();
+            }
+        }
+    }
+
+    public function updateSignature(Request $request, $id)
+    {
+        if(request()->ajax()){
+            try {            
+                $request->validate([
+                    'signature' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the image file
+                ]);
+        
+                if ($request->hasFile('signature')) {
+                    $imageFile = $request->file('signature');
+                    $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    // originalName-time.extension
+                    $filename = $originalName . "-" . time() . '.' . $imageFile->getClientOriginalExtension();
+                    
+                    $path = 'uploads/signatures/'.$filename;
+                    $user = User::findOrFail($id);
+                   
+                    $user->update([
+                        'signature' => $path,
+                        'isSignatureComplete' => 1
+                    ]);
+
+                    if($user){
+                        $imageFile->storeAs('public/uploads/signatures/', $filename);
+
+                        $successMessage = $user->name.'\'s signature successfully uploaded!';
+
+                        return response()->json(['successMessage' => $successMessage]);
+                    }
+                }
+                // return redirect()->route('success')->with('success', 'Data saved successfully!');
+            } catch (ValidationException $e) {
+                return redirect()->back()->withErrors($e->errors())->withInput();
+            }
+        }
+    }
+
+    public function updateProfileName(Request $request, $id)
+    {
+        if(request()->ajax()){
+            try {            
+                $request->validate([
+                    'name' => 'required|string|max:255', // Validate the image file
+                ]);
+        
+                $user = User::findOrFail($id);
+            
+                $user->update([
+                    'name' => $request->name,
+                ]);
+
+                if($user){
+                    $successMessage = 'Profile name is now '.$user->name;
+
+                    return response()->json(['successMessage' => $successMessage]);
+                }
+
+                // return redirect()->route('success')->with('success', 'Data saved successfully!');
+            } catch (ValidationException $e) {
+                return redirect()->back()->withErrors($e->errors())->withInput();
+            }
+        }
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        
+            try {            
+                $request->validate([
+                    'password' => 'required|string|max:255', 
+                ]);
+                
+                $user = User::findOrFail($id);
+            
+                $user->update([
+                    'password' => Hash::make($request->password),
+                    'isPassChanged' => 1
+                ]);
+                
+                if($user){
+                    $successMessage = 'Your password is now updated '.$user->name.'!';
+
+                    return response()->json(['successMessage' => $successMessage]);
+                }
+
+                // return redirect()->route('success')->with('success', 'Data saved successfully!');
+            } catch (ValidationException $e) {
+                return redirect()->back()->withErrors($e->errors())->withInput();
+            }
+        // }
     }
 
     /**

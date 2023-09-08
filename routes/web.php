@@ -42,6 +42,9 @@ Route::get('/print/approval-requests/{id}',[App\Http\Controllers\ApprovalRequest
 Route::put('/approve/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestController::class, 'approve'])->name('approval-requests.approve');
 Route::put('/reject/approval-requests/{id}',[App\Http\Controllers\ApprovalRequestController::class, 'reject'])->name('approval-requests.reject');
 Route::resource('/users',UsersController::class);
-
+Route::put('/users/profile-pic/{id}',[App\Http\Controllers\UsersController::class, 'updateProfilePic'])->name('users.updateProfilePic');
+Route::put('/users/profile-sign/{id}',[App\Http\Controllers\UsersController::class, 'updateSignature'])->name('users.updateSignature');
+Route::put('/users/profile-name/{id}',[App\Http\Controllers\UsersController::class, 'updateProfileName'])->name('users.updateProfileName');
+Route::put('/users/profile-pass/{id}',[App\Http\Controllers\UsersController::class, 'updatePassword'])->name('users.updatePassword');
 });
     

@@ -53,6 +53,7 @@ class CheckRouteAccess
             'users.edit',
             'users.update',
             'users.destroy',
+            'users.updateProfileName',
             'profile.index',
             'profile.update',
         ];
@@ -87,6 +88,10 @@ class CheckRouteAccess
                 'documentations.edit',
                 'documentations.update',
                 'documentations.destroy',
+                'users.updateProfilePic',
+                'users.updateSignature',
+                'users.updateProfileName',
+                'users.updatePassword'
             ]))) {
                 $allowedRoles = [1, 2, 3];
             } elseif (in_array($currentRouteName, [                    
@@ -99,6 +104,11 @@ class CheckRouteAccess
                     'approval-requests.destroy',
                     'approval-requests.print',
                     'approval-requests.approve',
+                    'users.updateProfilePic',
+                    'users.updateSignature',
+                    'users.updateProfileName',
+                    'users.show',
+                    'users.updatePassword'
                    
                 ])) {
                 $allowedRoles = [1, 2];
@@ -112,6 +122,7 @@ class CheckRouteAccess
                     'users.destroy',
                     'approval-requests.print',
                     'approval-requests.approve',
+                    'users.updatePassword'
                     
             ])) {
                 $allowedRoles = [1];

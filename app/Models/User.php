@@ -26,6 +26,7 @@ class User extends Authenticatable
         'signature',
         'isPicComplete',
         'isSignatureComplete',
+        'isPassChanged'
 
     ];
 
