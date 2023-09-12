@@ -84,10 +84,10 @@ class DiariesController extends Controller
                     'trainee' => $trainee->name,
                     'supervisor' => $supervisor->name,
                     'sup_email' => $supervisor->email,
-                    'url' => route('approval-requests.show',$diary->id),
+                    // 'url' => route('approval-requests.show',$diary->id),
                 ];
 
-                Notification::route('slack', config('notifications.slack_webhook'))->notify(new NewDiaryPosted($diary));
+                // Notification::route('slack', config('notifications.slack_webhook'))->notify(new NewDiaryPosted($diary));
             }
             $diaries = Diary::all();
             return view('admin.diaries.index')->with('diaries',$diaries);

@@ -11,6 +11,7 @@ class DiaryApproved extends Notification
 {
     use Queueable;
 
+    public $diary;
     /**
      * Create a new notification instance.
      *
